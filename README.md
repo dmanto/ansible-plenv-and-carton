@@ -30,7 +30,7 @@ None.
 
     - hosts: servers
       roles:
-        - { role: dmanto.plenv, app_user: "username", plenv_local: "5.20.2"}
+        - { role: dmanto.plenv-and-carton, app_user: "username", plenv_local: "5.20.2"}
 
 
 * cron or daemon
