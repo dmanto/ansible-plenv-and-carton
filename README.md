@@ -3,6 +3,13 @@ plenv
 
 ansible role to install plenv, set local version and install Carton
 
+Tested on the following platforms:
+
+- CentOs (6.x 7.x)
+- Ubunt (12.04, 14.04, 16.04)
+- Fedora24
+- Debian8
+
 Requirements
 ------------
 
