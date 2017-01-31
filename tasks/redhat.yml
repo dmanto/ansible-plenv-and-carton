@@ -1,0 +1,24 @@
+- name: install dependencies package - RedHat, except Fedora
+  when: ansible_distribution != 'Fedora'
+  yum: name={{ item }} state=installed
+  become: yes
+  with_items:
+    - perl-ExtUtils-MakeMaker
+    - make
+    - gcc
+    - git-all
+    - wget
+    - patch
+
+- name: install dependencies package - RedHat, distro Fedora
+  when: ansible_distribution == 'Fedora'
+  dnf: name={{ item }} state=latest
+  become: yes
+  with_items:
+    - perl-ExtUtils-MakeMaker
+    - make
+    - gcc
+    - git-all
+    - wget
+    - patch
+    - tar

@@ -1,0 +1,11 @@
+app_user: "{{ app_user | default('vagrant') }}"
+home_path: "/home/{{ app_user }}"
+perl_build:
+  url: https://github.com/tokuhirom/Perl-Build.git
+  path: "{{ home_path }}/.plenv/plugins/perl-build"
+
+plenv:
+  bin: "{{ home_path }}/.plenv/bin/plenv"
+  url: https://github.com/tokuhirom/plenv.git
+  user: "{{ app_user }}"
+  local: "{{ plenv_local  | default('5.24.1')}}"

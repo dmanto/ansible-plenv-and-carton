@@ -1,0 +1,88 @@
+- name: Muestra variable usuario
+  debug:
+    msg: "user es: {{ plenv.user }}, os family es {{ ansible_os_family }}, distro es {{ ansible_distribution }} "
+
+- include: "{{role_path}}/tasks/redhat.yml"
+  when: ansible_os_family == 'RedHat'
+
+- include: "{{role_path}}/tasks/debian.yml"
+  when: ansible_os_family == 'Debian'
+
+- name: Adds user if not exists
+  user:
+    name: "{{ plenv.user }}"
+    
+- name: exist plenv
+  stat: path={{ plenv.bin }}
+  register: exist_plenv
+  become: yes
+  become_user: "{{ plenv.user }}"
+  changed_when: false
+
+- name: install plenv
+  when: not exist_plenv.stat.exists
+  git: repo={{ plenv.url }} dest={{ home_path }}/.plenv clone=yes
+  become: yes
+  become_user: "{{ plenv.user }}"
+
+- name: exist perl build
+  stat: path={{ perl_build.path }}
+  register: exist_perl_build
+  become: yes
+  become_user: "{{ plenv.user }}"
+  changed_when: false
+
+- name: install perl build
+  when: not exist_perl_build.stat.exists
+  git: repo={{ perl_build.url }} dest={{ perl_build.path }} clone=yes
+  become: yes
+  become_user: "{{ plenv.user }}"
+
+- name: set profile.d
+  template: src=plenv.sh.j2 dest=/etc/profile.d/plenv.sh owner=root mode=644
+  become: yes
+
+- name: exist version
+  shell: "{{ plenv.bin }} versions | grep {{ plenv.local }} | wc -l"
+  register: exist_version
+  become: yes
+  become_user: "{{ plenv.user }}"
+  changed_when: false
+
+- name: install perl
+  when: exist_version.stdout == "0"
+  shell: "{{ plenv.bin }} install {{ plenv.local }}"
+  become: yes
+  become_user: "{{ plenv.user }}"
+
+- name: "check local version"
+  shell: "{{ plenv.bin }} local | grep {{ plenv.local }} | wc -l"
+  args:
+    chdir: "{{ home_path }}/"
+  register: check_version
+  become: yes
+  become_user: "{{ plenv.user }}"
+  changed_when: false
+
+- name: "set local perl"
+  shell: "{{ plenv.bin }} local {{ plenv.local }} && {{ plenv.bin }} global {{ plenv.local }} && {{ plenv.bin }} rehash"
+  args:
+    chdir: "{{ home_path }}/"
+  become: yes
+  become_user: "{{ plenv.user }}"
+  when: check_version.stdout != "1"
+
+- name: exist cpanm
+  stat: path={{ home_path }}/.plenv/versions/{{ plenv.local }}/bin/cpanm
+  register: exist_cpanm
+  become: yes
+  become_user: "{{ plenv.user }}"
+  changed_when: false
+
+- name: install cpanm
+  shell: "{{ plenv.bin }} install-cpanm && {{ plenv.bin }} exec cpanm Carton && {{ plenv.bin }} rehash"
+  args:
+    chdir: "{{ home_path }}/"
+  become: yes
+  become_user: "{{ plenv.user }}"
+  when: not exist_cpanm.stat.exists

@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: swfz
+  description: install plenv
+  license: license (GPLv2, CC-BY, etc)
+  min_ansible_version: 1.2
+  platforms:
+  - name: EL
+    versions:
+    - 6
+  categories:
+  - development
+dependencies: []
+  

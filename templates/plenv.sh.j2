@@ -1,0 +1,5 @@
+if [ -d "$HOME/.plenv" ]; then
+  export PATH=$HOME/.plenv/bin:$PATH;
+  export PLENV_ROOT=$HOME/.plenv;
+  eval "$(plenv init -)";
+fi
