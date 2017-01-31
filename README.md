@@ -1,22 +1,14 @@
-plenv
-=========
+# Ansible Role: install plenv and Carton
 
-ansible role to install plenv, set local version and install Carton
+[![Build Status](https://travis-ci.org/dmanto/ansible-plenv-and-carton.svg?branch=master)](https://travis-ci.org/dmanto/ansible-plenv-and-carton)
 
-Tested on the following platforms:
+Installs Perl development / production environment tools (plenv and Carton)  for RedHat/CentOS and Debian/Ubuntu linux servers.
 
-- CentOs (6.x 7.x)
-- Ubunt (12.04, 14.04, 16.04)
-- Fedora24
-- Debian8
+## Requirements
 
-Requirements
-------------
+None.
 
-require git and change settings able to git clone
-
-Role Variables
---------------
+## Role Variables
 
 * plenv_local
 
@@ -30,13 +22,11 @@ default is "vagrant"
 
 username of application user
 
-Dependencies
-------------
+## Dependencies
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None.
 
-Example Playbook
-----------------
+## Example Playbook (creates user username, dir /home/username if not exists, with local perl 5.20.2)
 
     - hosts: servers
       roles:
@@ -54,11 +44,12 @@ SCRIPT=/path/to/env
 * * * * $SCRIPT plenv exec perl script.pl
 ```
 
-License
--------
+## License
 
-BSD
+MIT / BSD
 
-Author Information
-------------------
+## Author Information
 
+This role was mainly inspired by ansible-role-java role written by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/), and swfz.plenv ansible role forked from github.
+
+Author: Daniel Mantovani 2017
