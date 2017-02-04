@@ -43,7 +43,8 @@ script:
 - docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source
   /etc/profile.d/plenv.sh && plenv which carton"
 after_success:
+  - docker tag "$(cat ${container_id})" $DOCKER_USER/docker-${distro}-ansible-plenv-and-carton:latest
   - docker login -u="$DOCKER_USER" -p="$DOCKER_PASS"
-  - docker push $DOCKER_USER/docker-${distro}-ansible-plenv-and-carton:latest
+  - docker push $DOCKER_USER/docker-${distro}-ansible-plenv-and-carton
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
