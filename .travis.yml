@@ -43,9 +43,7 @@ script:
 - docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source
   /etc/profile.d/plenv.sh && plenv which carton"
 after_success:
-    - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push "$DOCKER_EMAIL"/docker-${distro}-ansible-plenv-and-carton:latest;
-    fi
+  - docker login -e="$DOCKER_EMAIL" -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push $DOCKER_USERNAME/docker-${distro}-ansible-plenv-and-carton:latest;
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
