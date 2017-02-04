@@ -8,4 +8,4 @@
       changed_when: false
 
   roles:
-    - {role: role_under_test, app_user: "testuser", plenv_local: "5.25.0"}
+    - {role: role_under_test, app_user: "testuser", plenv_local: "5.24.1"}
