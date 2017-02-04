@@ -1,58 +1,48 @@
----
 services: docker
-
 env:
+  matrix:
   - distro: ubuntu1604
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro
   - distro: centos7
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro
   - distro: centos6
     init: /sbin/init
-    run_opts: ""
+    run_opts: ''
   - distro: fedora24
     init: /usr/lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    run_opts: --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro
   - distro: ubuntu1404
     init: /sbin/init
-    run_opts: ""
+    run_opts: ''
   - distro: ubuntu1204
     init: /sbin/init
-    run_opts: "--privileged"
+    run_opts: --privileged
   - distro: debian8
     init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-
+    run_opts: --privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro
+  global:
+  - secure: Y8Xh6eJhsN3a0orHhtpKLdupXbQoh/MAmaUcxogt2bPfU7cgk/QUCdY4NYfSYqFZidqUhUkmXKgse6eCIWyRoqp4eCTapUeAII9XG3dBYLN0W0Sx3+eMrGnsJX5f9X6jASsdafFFQwKSBsT9vu3IgUfbpblc/BHG95qa193t+0gxyFgR1oRDosgXGkXVxepmk8xi24l/+o4IwrMsUynhKtWWV78Ne+0/h/7C0DbnOrDOB42k/IO0mb67g/VEcJSZMdckLfOz1pJ6nWQqVd//FG6T158q9ssgJ1Uck2or/w5OfRVLuqD6LRLLHIrjIPLLMb3o3gnixJoodLgg48wSjHo/f1Qot/ej7+CwDDu5K4q6NSwLIhgu1acvWk75LFAq9RHXg6+K+vVUTQTzrzQ9Q+BLEEdhb11OGNcEhZAPU7ap32mAlzoYFYadtFi07XEPVEobddztOXXfHqfR8ZWvZwynTvBENrTPDJbN7BdC/hVOqRliOFAjbm2Q0uAstzCxTMRnjs0CzsdMi384vLOb3RRiADPAjiNc84K+1DvKlHt/0Nuh5Ro+wMA6/c00KyDLULp6nkho1i8IvPmXhNVOEb8GEwzycKB3qjSpReA1bZHxA1ta7Cx3C7pZpJkitWfDFg3Tlxlv8sCMtPet6fq+T14d8s5vK1qV/1H+qgoOXkY=
+  - secure: FE6XhsSlNy8slOIUOWqjY9ouomvalyRDX21bMhdbyrgCpPUZRF9rSymCy3szsNliDQJPB1/BT08XI+2M0RbLTuGMm/4G6w5QarhrentuxTGzuTw60isV9hZXvFdyCzEQXhvTPWeYNWOAh7TqEh/NqlMAANTSX5vPBX6ihoysR7tMqYr7qRPTaq5pKCg2R6+0DpmnBIMNtWky/2h6aRmXDaTuK+WIrdgzgnOgL2tBmfmA7JMNjJQFXSbv1pb6PDKXOi96eMNrjmsS8d5/K+UM4cdWbsU+XWS94RPrsPChaAqIqzTv1fK5Vg7rj51BEr5P33GMVvoyzuEJz0U23FRTHQ/+IgT0DEscaVdpx///8Zuq0W/zHW2IWlklyz48PPvDMCO8j0DJEAtCRCjwLj70twnRD9P3hQ6mUnnJhJ1FDPWHxkQDPi73OcwP3uiFFtGNcHHAKQ1SGNFm9xTGrE1TDCeyRp0hp4ZXpUnhiKRaPVfBFkTL4/GCSDrGE8/2BBdWO3d6kM2ZMF3IwO9aT3g5f6EQY6L5VjHwQAvJ5IhXwKTCsyIaLs7Lzo/DpJIUkhz8kNY+YnIffjAoy8VilJ4cGR2C5a5GDhrWme3stDlTgME7g95jqnUDqiTMo8qNueNXrnCAy+D2GD6WpYu4DuZjmMAVM2kjgK66t1R+WcUQUCA=
+  - secure: fItg7ry0PEUKrt+Uk7JvM7jk4m3sopR8AjCVApprIxiB7/NJY8w9J9HtdlWSde6Cl/+NdXQmxZo9L8JhpVHzf/HFMD0DkfTyANMPU5TvVxtFQ7GtRsPNQZrgCahsws/USyMY0T1Q8xEmx31B/ZPeLOJJ+OWNUuWfqSFbo7I3c/CMLTM1NGEQ3msdPG/vo0rNPl36yVCHVJ7oELRChtYKygcqRrdb/naeMGwwijFCdhpVn6cgTqoz19vwDR5n9pEh6UR6JA7I2bJGJgsge0EsYpaulM5Xr5SZdtRghZjTiGDHgcDDriNxnriSLZDsrdAhE/AV4q970Jn2L92uOvDJRHMglGKymzv6MGzGQSxwVhzvqUYxzNqwxgQtwJUp2kU4C4KEu4NSvRgvETfFxZNF9y9YlybizW25rq6182BehdzvyHQurTtvAVKGnGEcaXQLJZ44Ajmm+4XxSM1kKOdXasyu+rLLcBFUBEB//1L6yK+tGD8DidC+Dlfm2lmx9yScF8gfRzH0CJkra+9ZJo9H+2cr2bqScN796sLm19wfHI12EoX5QsG4lUbqvTkK23OEOGYvuuIPRSAwKTrXGCJPR0E7Z3lccUv0HD8LTyYPnhUj91ydiSO9URBXl14+g0ckR37FWZxKH4qcr9FfjMWqYWBBt+W4WGME6HCrx8INjzU=
 before_install:
-  # Pull container.
-  - 'docker pull geerlingguy/docker-${distro}-ansible:latest'
-
+- docker pull geerlingguy/docker-${distro}-ansible:latest
 script:
-  - container_id=$(mktemp)
-  # Run container in detached state.
-  - 'docker run -d -v "${PWD}":/etc/ansible/roles/role_under_test ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
-
-  # Ansible syntax check.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
-
-  # Test role.
-  - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
-
-  # Test role idempotence.
-  - idempotence=$(mktemp)
-  - docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml | tee -a ${idempotence}
-  - >
-    tail ${idempotence}
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
-
-  # Ensure plenv is installed.
-  - 'docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source /etc/profile.d/plenv.sh && which plenv"'
-
-  # Ensure carton is installed.
-  - 'docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source /etc/profile.d/plenv.sh && plenv which carton"'
-
+- container_id=$(mktemp)
+- docker run -d -v "${PWD}":/etc/ansible/roles/role_under_test ${run_opts} geerlingguy/docker-${distro}-ansible:latest
+  "${init}" > "${container_id}"
+- docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
+  --syntax-check
+- docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
+- idempotence=$(mktemp)
+- docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
+  | tee -a ${idempotence}
+- |
+  tail ${idempotence} | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+- docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source
+  /etc/profile.d/plenv.sh && which plenv"
+- docker exec -u testuser --tty "$(cat ${container_id})" env TERM=xterm bash -c "source
+  /etc/profile.d/plenv.sh && plenv which carton"
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
