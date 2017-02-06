@@ -39,7 +39,7 @@
   become_user: "{{ plenv.user }}"
 
 - name: set profile.d
-  template: src=plenv.sh.j2 dest=/etc/profile.d/plenv.sh owner=root mode=644
+  template: src=plenv.sh.j2 dest=/etc/profile.d/plenv.sh owner="{{ plenv.user }}" mode=744
   become: yes
 
 - name: exist version
