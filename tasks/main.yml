@@ -51,7 +51,7 @@
 
 - name: install perl
   when: exist_version.stdout == "0"
-  shell: "{{ plenv.bin }} install {{ plenv.perl_flags }} {{ plenv.local }}"
+  shell: "{{ plenv.bin }} install {{ plenv_perl_flags }} {{ plenv.local }}"
   become: yes
   become_user: "{{ plenv.user }}"
 
