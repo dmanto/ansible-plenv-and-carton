@@ -1,2 +1,3 @@
 ---
 # defaults file for plenv
+plenv.perl_flags: -j 9 -D usethreads -D man1dir=none -D man3dir=none
