@@ -1,5 +1,5 @@
 - name: install dependencies package - Debian
-  package: name={{ item }} state=latest
+  package: name={{ item }} state=present
   become: yes
   with_items:
     - make
