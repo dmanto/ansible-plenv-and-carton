@@ -4,7 +4,7 @@
   with_items:
     - make
     - gcc
-    - git
+    - git-all
     - wget
     - curl
     - patch
