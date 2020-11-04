@@ -52,4 +52,4 @@ MIT / BSD
 
 This role was mainly inspired by ansible-role-java role written by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/), and swfz.plenv ansible role forked from github.
 
-Author: Daniel Mantovani 2017
+Author: Daniel Mantovani 2017-2020
