@@ -48,6 +48,7 @@
   become: yes
   become_user: "{{ plenv.user }}"
   changed_when: false
+  check_mode: no
 
 - name: install perl
   when: exist_version.stdout == "0"
@@ -63,6 +64,7 @@
   become: yes
   become_user: "{{ plenv.user }}"
   changed_when: false
+  check_mode: no
 
 - name: "set local perl"
   shell: "{{ plenv.bin }} local {{ plenv.local }} && {{ plenv.bin }} global {{ plenv.local }} && {{ plenv.bin }} rehash"
