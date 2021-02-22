@@ -9,3 +9,4 @@
     - curl
     - patch
     - sudo
+    - libc6-dev
