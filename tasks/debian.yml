@@ -1,12 +1,13 @@
 - name: install dependencies package - Debian
-  package: name={{ item }} state=present
   become: yes
-  with_items:
-    - make
-    - gcc
-    - git
-    - wget
-    - curl
-    - patch
-    - sudo
-    - libc6-dev
+  package:
+    state: present
+    name:
+      - make
+      - gcc
+      - git
+      - wget
+      - curl
+      - patch
+      - sudo
+      - libc6-dev
